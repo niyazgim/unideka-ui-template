@@ -12,11 +12,6 @@ export const ROUTES = {
     href: "/",
     title: 'Главная',
   },
-  projects: {
-    id: 'projects',
-    href: "/projects",
-    title: 'Проекты'
-  },
   dprofileProjects: {
     id: 'dprofileProjects',
     href: "https://dprofile.ru/rovno_dev",
