@@ -10,15 +10,13 @@ import { DeployedCodeIcon } from "../icons/unideka-icons/deployed-code-icon";
 import { ArticleIcon } from "../icons/unideka-icons/article-icon";
 import { WorkIcon } from "../icons/unideka-icons/work-icon";
 import Link from "next/link";
-import RovnoLogotypeIconEmpty from "./rovno-dev-logotype/rovno-dev-logotype-icon-empty";
 
 export default function BottomAppBar() {
   const [open, setOpen] = useState(false);
 
   const links = [
     // Pass the COMPONENT, not <Component />
-    { ...ROUTES.projects, icon: DeployedCodeIcon },
-    { ...ROUTES.about, icon: RovnoLogotypeIconEmpty },
+    // { ...ROUTES.projects, icon: DeployedCodeIcon },
     { href: ROUTES.journal.href, title: "Журнал", icon: ArticleIcon },
     // { ...ROUTES.job, icon: WorkIcon },
   ]
@@ -39,10 +37,10 @@ export default function BottomAppBar() {
                   size="icon-medium"
                   key={key}
                 >
-                  <Link href={link.href} className="flex items-center justify-center flex-col! gap-2 w-full h-full">
+                  {/* <Link href={link.href} className="flex items-center justify-center flex-col! gap-2 w-full h-full">
                     <Icon className="size-6" />
                     <p className="text-body-5">{link.title}</p>
-                  </Link>
+                  </Link> */}
                 </Button>
               );
             })}
@@ -55,10 +53,10 @@ export default function BottomAppBar() {
             size="medium"
             onClick={() => setOpen(true)}
           >
-            <Link href={'https://forms.yandex.com/cloud/6936a4b1d0468820623c548e'}>
+            {/* <Link href={'https://forms.yandex.com/cloud/6936a4b1d0468820623c548e'}>
               <DesignServicesIcon className="size-[26px]!" />
               <span className="text-display-4">Заказ</span>
-            </Link>
+            </Link> */}
           </Button>
 
         </div>

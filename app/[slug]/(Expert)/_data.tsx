@@ -6,7 +6,7 @@ import {
   TelegramLogotypeMonoIcon,
   DiamondIcon
 } from "@/components/icons";
-import RovnoLogotypeIcon from "@/components/layout/rovno-dev-logotype/rovno-dev-logotype-icon";
+import LogotypeIcon from "@/components/layout/rovno-dev-logotype/logotype-icon";
 import { Project, PROJECTS } from "@/app/[slug]/(Project)/data"
 import { GithubLogotypeMonoIcon } from "@/components/icons/logotypes/github-logotype-mono-icon";
 // Note: PROJECTS is now defined in the same directory's data.tsx
@@ -38,7 +38,7 @@ export const EXPERTS_DATA: Record<string, ExpertData> = {
     avatar: "/images/experts/niyazgim.png",
     telegramChannel: "niyazgim",
     tags: [
-      { label: "Со-основатель и Техдир", icon: <RovnoLogotypeIcon /> },
+      { label: "Со-основатель и Техдир", icon: <LogotypeIcon /> },
       { label: "Автор тех самых стихов", icon: null },
       { label: "Создатель Unideka UI", icon: null },
       { label: "Основатель Вершин", icon: null },
@@ -58,7 +58,7 @@ export const EXPERTS_DATA: Record<string, ExpertData> = {
     avatar: "/images/experts/RovnoMikhail.jpg", // Replace with actual
     telegramChannel: "rovno_dev",
     tags: [
-      { label: "Со-основатель и Директор по работе с клиентами и продукту", icon: <RovnoLogotypeIcon /> },
+      { label: "Со-основатель и Директор по работе с клиентами и продукту", icon: <LogotypeIcon /> },
     ],
     socials: [
       { icon: <TelegramLogotypeMonoIcon />, href: "https://t.me/RovnoMikhail" },
@@ -76,7 +76,7 @@ export const EXPERTS_DATA: Record<string, ExpertData> = {
     avatar: "/images/experts/RovnoDanil.jpg",
     telegramChannel: "rovno_dev",
     tags: [
-      { label: "Со-основатель и Арт-директор", icon: <RovnoLogotypeIcon /> },
+      { label: "Со-основатель и Арт-директор", icon: <LogotypeIcon /> },
     ],
     socials: [
       { icon: <TelegramLogotypeMonoIcon />, href: "https://t.me/RovnoDanil" },

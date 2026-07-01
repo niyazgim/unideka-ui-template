@@ -4,10 +4,10 @@ import { ROUTES } from "@/utils/constants/routes";
 import { DprofileLogotypeMonoIcon, PinterestLogotypeMonoIcon, TelegramLogotypeMonoIcon, VKLogotypeMonoIcon } from "../icons";
 import { Button } from "../ui/button";
 import { Container } from "../ui/container";
-import RovnoLogotypeWordmark from "./rovno-dev-logotype/rovno-dev-logotype-wordmark";
 import { NavLink } from "./nav-link";
 import { ThemeSwitcher } from "./theme-switcher";
 import Link from "next/link";
+import Logotype from "./rovno-dev-logotype/logotype";
 
 export default function Footer() {
   const footerSections = [
@@ -17,13 +17,12 @@ export default function Footer() {
         <div>
           <div className="flex mb-3 gap-2 items-center">
             <ThemeSwitcher />
-            <RovnoLogotypeWordmark className="w-calc(100%-1rem)!" />
+            <Logotype className="w-calc(100%-1rem)!" />
           </div>
           <SocialMediaIcons className="block lg:hidden!" />
         </div>
       ),
       links: [
-        ROUTES.projects,
         ROUTES.about,
         ROUTES.journal,
         // ROUTES.job,
@@ -68,7 +67,7 @@ export default function Footer() {
               <ul className="flex flex-col gap-2 mt-2.5">
                 {section.links.map((link, key) => (
                   <li key={key}>
-                    <NavLink className="text-body-3 text-(--on-bg-low)" href={link.href}>{link.title}</NavLink>
+                    {/* <NavLink className="text-body-3 text-(--on-bg-low)" href={link.href}>{link.title}</NavLink> */}
                   </li>
                 ))}
               </ul>
