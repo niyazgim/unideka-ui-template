@@ -20,14 +20,13 @@ import {
   ComboboxEmpty,
 } from "@/components/ui/combobox";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { PricingCalendar } from "@/components/layout/calendars/pricing-calendar";
 import { KeyboardArrowDownIcon, CheckCircleIcon } from "@/components/icons";
@@ -212,19 +211,32 @@ export default function SupportCostForm() {
         </div>
       </Card>
 
-      <AlertDialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>✅ Quote Requested</AlertDialogTitle>
-            <AlertDialogDescription>
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0 duration-200 rounded-2xl border border-(--outline) shadow-2xl bg-(--card) max-w-md">
+          <DialogHeader>
+            <div className="flex items-center justify-center mb-2">
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-3xl">
+                ✓
+              </div>
+            </div>
+            <DialogTitle className="text-center text-display-3 text-(--on-bg-high)">
+              Quote Requested
+            </DialogTitle>
+            <DialogDescription className="text-center text-body-2 text-(--on-bg-medium) max-w-sm mx-auto">
               Your request has been sent. We'll get back to you within 24 hours.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogAction onClick={handleDialogClose}>OK</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+              <br />
+              <span className="text-body-5 text-(--on-bg-low) mt-2 block">
+                Click outside or press Esc to close.
+              </span>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex justify-center sm:justify-center">
+            <Button onClick={handleDialogClose} variant="filled" className="min-w-[120px]">
+              OK
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 }
