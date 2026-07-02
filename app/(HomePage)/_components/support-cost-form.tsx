@@ -220,10 +220,10 @@ export default function SupportCostForm() {
               </div>
             </div>
             <DialogTitle className="text-center text-display-3 text-(--on-bg-high)">
-              Quote Requested
+              Just a Dialog
             </DialogTitle>
             <DialogDescription className="text-center text-body-2 text-(--on-bg-medium) max-w-sm mx-auto">
-              Your request has been sent. We'll get back to you within 24 hours.
+              Check other features too!)
               <br />
               <span className="text-body-5 text-(--on-bg-low) mt-2 block">
                 Click outside or press Esc to close.
