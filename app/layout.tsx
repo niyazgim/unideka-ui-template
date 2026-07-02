@@ -8,6 +8,7 @@ import BottomAppBar from "@/components/layout/bottom-app-bar";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
+// Import your fonts
 export const NotoSans = localFont({
   src: '../public/fonts/NotoSans.woff2',
   variable: '--font-sans',
@@ -19,8 +20,11 @@ export const Oswald = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Цифровое агентство полного цикла Rovno.dev",
-  description: "Digital-агентство полного цикла Rovno.dev - дизайн, LLM, сайты, приложения, логотипы и айдентика, 3D",
+  title: "Unideka UI",
+  description: "Framework-agnostic, AI-driven design system based on shadcn",
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
@@ -61,7 +65,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
-            <BottomAppBar />
+            {/* <BottomAppBar /> */}
           </TooltipProvider>
         </ThemeProvider>
       </body>

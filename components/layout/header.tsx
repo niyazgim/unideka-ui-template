@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { Container } from "@/components/ui/container";
 import Link from "next/link";
-import Logotype from "./rovno-dev-logotype/logotype";
+import Logotype from "./logotype/logotype";
 import { Button } from "../ui/button";
 import { NavLink } from "./nav-link";
 import { GithubLogotypeMonoIcon } from "../icons/logotypes/github-logotype-mono-icon";
@@ -68,8 +68,8 @@ export default function Header() {
             <span className="hidden sm:inline">GH repo</span>
             <span className="text-(--on-bg-low) text-[10px]">·</span>
             <span className="font-mono text-[10px]">{starsDisplay} ⭐</span>
-            <span className="text-(--on-bg-low) text-[10px]">·</span>
-            <span className="text-[10px] font-mono text-(--on-bg-low)">Apache 2.0</span>
+            <span className="hidden sm:block text-(--on-bg-low) text-[10px]">·</span>
+            <span className="hidden sm:block text-[10px] font-mono text-(--on-bg-low)">Apache 2.0</span>
           </a>
         </Button>
       </Container>

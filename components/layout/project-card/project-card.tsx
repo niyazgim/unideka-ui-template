@@ -1,4 +1,4 @@
-import { Project } from "@/app/[slug]/(Project)/data";
+import { Project } from "@/app/_[slug]/(Project)/data";
 import { Card } from "@/components/ui/card";
 import Image from "next/image"
 

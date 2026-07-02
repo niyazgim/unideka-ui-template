@@ -5,35 +5,45 @@ import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { GithubLogotypeMonoIcon } from "@/components/icons/logotypes/github-logotype-mono-icon";
-import LogotypeIcon from "@/components/layout/rovno-dev-logotype/logotype-icon";
+import LogotypeIcon from "@/components/layout/logotype/logotype-icon";
 import Link from "next/link";
 
 function HeroFancy() {
   const [stars, setStars] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // useEffect(() => {
-  //   async function fetchStars() {
-  //     try {
-  //       const res = await fetch(
-  //         "https://api.github.com/repos/niyazgim/unideka-ui-template"
-  //       );
-  //       if (!res.ok) throw new Error("Failed to fetch");
-  //       const data = await res.json();
-  //       setStars(data.stargazers_count);
-  //     } catch {
-  //       setStars(null);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   }
-  //   fetchStars();
-  // }, []);
+  useEffect(() => {
+    async function fetchStars() {
+      try {
+        const res = await fetch(
+          "https://api.github.com/repos/niyazgim/unideka-ui-template"
+        );
+        if (!res.ok) throw new Error("Failed to fetch");
+        const data = await res.json();
+        setStars(data.stargazers_count);
+      } catch {
+        setStars(null);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchStars();
+  }, []);
 
   const starsDisplay = loading ? "…" : stars !== null ? stars.toLocaleString() : "—";
 
   return (
     <Card className="relative overflow-hidden p-8 border-(--outline) bg-(--card) shadow-xl group">
+      {/* Logotype background – peeking from the right edge, half hidden */}
+      <div className="absolute inset-0 pointer-events-none">
+        <LogotypeIcon
+          width={400}
+          height={400}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 animate-[breathe_8s_ease-in-out_infinite]"
+          style={{ opacity: 0.05 }}
+        />
+      </div>
+
       {/* Decorative blobs */}
       <div className="absolute -top-24 -right-24 size-64 rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute -bottom-16 -left-16 size-48 rounded-full bg-primary/5 blur-3xl" />
@@ -88,19 +98,9 @@ function HeroFancy() {
 
 export function HeroSection() {
   return (
-    <div className="relative overflow-hidden py-16 md:py-24">
-      {/* Background logotype icon – breathing animation */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <LogotypeIcon
-          width={500}
-          height={500}
-          className="w-[80%] max-w-3xl animate-[breathe_8s_ease-in-out_infinite]"
-          style={{ opacity: 0.05 }}
-        />
-      </div>
-
+    <section className="relative py-8 md:py-16">
       <Container>
-        <div className="flex flex-col md:flex-row items-start gap-8 relative z-10">
+        <div className="flex flex-col md:flex-row items-start gap-8">
           {/* Left column */}
           <div className="flex-1 text-center md:text-left animate-reveal [animation-delay:0ms]">
             <h1 className="text-5xl md:text-7xl font-heading font-bold text-(--on-bg-high) mb-4">
@@ -132,6 +132,6 @@ export function HeroSection() {
           </div>
         </div>
       </Container>
-    </div>
+    </section>
   );
 }

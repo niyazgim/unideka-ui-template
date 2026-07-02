@@ -1,90 +1,16 @@
-/* LLM context: Updating Footer social icons to support external links using Button asChild pattern */
-
-import { ROUTES } from "@/utils/constants/routes";
-import { DprofileLogotypeMonoIcon, PinterestLogotypeMonoIcon, TelegramLogotypeMonoIcon, VKLogotypeMonoIcon } from "../icons";
-import { Button } from "../ui/button";
-import { Container } from "../ui/container";
-import { NavLink } from "./nav-link";
-import { ThemeSwitcher } from "./theme-switcher";
 import Link from "next/link";
-import Logotype from "./rovno-dev-logotype/logotype";
+import { Container } from "@/components/ui/container";
+import Logotype from "./logotype/logotype";
+import { ThemeSwitcher } from "./theme-switcher";
+import {
+  TelegramLogotypeMonoIcon,
+  VKLogotypeMonoIcon,
+  DprofileLogotypeMonoIcon,
+  PinterestLogotypeMonoIcon,
+} from "@/components/icons";
+import { Button } from "@/components/ui/button";
 
-export default function Footer() {
-  const footerSections = [
-    {
-      id: 'main',
-      title: (
-        <div>
-          <div className="flex mb-3 gap-2 items-center">
-            <ThemeSwitcher />
-            <Logotype className="w-calc(100%-1rem)!" />
-          </div>
-          <SocialMediaIcons className="block lg:hidden!" />
-        </div>
-      ),
-      links: [
-        ROUTES.about,
-        ROUTES.journal,
-        // ROUTES.job,
-      ],
-    },
-    {
-      id: 'journal',
-      title: "Журнал Ровня",
-      links: [
-        // {
-        //   title: 'Стать редактором',
-        //   href: '/rovnya/become-editor',
-        // },
-        {
-          title: 'Предложить статью',
-          href: 'https://t.me/rovno_dev?direct',
-        },
-      ]
-    },
-    {
-      title: "Студентам",
-      links: [
-        {
-          title: 'Пройти стажировку',
-          href: 'https://forms.yandex.com/u/69975d0849af47b15b4c80df',
-        },
-        {
-          title: 'Повышение квалификации',
-          href: 'https://forms.yandex.com/u/69975d0849af47b15b4c80df',
-        },
-      ],
-    }
-  ];
-
-  return (
-    <footer className="bg-card pb-[100px] pt-[30px] sm:pt-[50px] border-t border-t-outline">
-      <Container className="sm:flex sm:gap-8">
-        <div className="w-full grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 mt-4">
-          {footerSections.map((section, index) => (
-            <div key={index} className="w-full">
-              {section.title && typeof section.title == 'string' ? <h3 className="text-(--on-bg-medium) text-heading-3">{section.title}</h3> : section.title}
-              <ul className="flex flex-col gap-2 mt-2.5">
-                {section.links.map((link, key) => (
-                  <li key={key}>
-                    {/* <NavLink className="text-body-3 text-(--on-bg-low)" href={link.href}>{link.title}</NavLink> */}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <SocialMediaIcons className="hidden lg:block" />
-      </Container>
-    </footer>
-  );
-}
-
-interface SocialMediaIconsProps {
-  className?: string,
-}
-
-function SocialMediaIcons({ className }: SocialMediaIconsProps) {
+function SocialMediaIcons({ className }: { className?: string }) {
   const socialIcons = [
     { icon: <TelegramLogotypeMonoIcon />, href: "https://t.me/rovno_dev" },
     { icon: <VKLogotypeMonoIcon />, href: "https://vk.com/rovno_dev" },
@@ -93,11 +19,10 @@ function SocialMediaIcons({ className }: SocialMediaIconsProps) {
   ];
 
   return (
-    <div className={`${className} block`}>
-      <h3 className="text-heading-3 text-(--on-bg-medium) sm:text-heading-2">Мы в соц. сетях</h3>
-      <div className="flex gap-1 mt-2 sm:flex-wrap lg:flex-nowrap">
+    <div className={className}>
+      <div className="flex gap-1">
         {socialIcons.map((item, key) => (
-          <Button variant={'text'} key={key} size={'icon-large'} asChild>
+          <Button variant="text" key={key} size="icon-large" asChild>
             <Link href={item.href} target="_blank" rel="noopener noreferrer">
               {item.icon}
             </Link>
@@ -105,5 +30,116 @@ function SocialMediaIcons({ className }: SocialMediaIconsProps) {
         ))}
       </div>
     </div>
-  )
+  );
+}
+
+export default function Footer() {
+  return (
+    <footer className="bg-card pb-[100px] pt-[30px] sm:pt-[50px] border-t border-t-outline">
+      <Container>
+        <div className="flex flex-col gap-8">
+          {/* Top row: logotype + theme switcher + social */}
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <Logotype className="h-8 sm:h-10 w-auto" />
+              <ThemeSwitcher />
+            </div>
+            <SocialMediaIcons className="" />
+          </div>
+
+          {/* Links grid */}
+          {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-heading-3 text-(--on-bg-medium) mb-2">Company</h3>
+              <ul className="flex flex-col gap-1.5">
+                <li>
+                  <Link href="/about" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/blog" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/careers" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    Careers
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-heading-3 text-(--on-bg-medium) mb-2">Resources</h3>
+              <ul className="flex flex-col gap-1.5">
+                <li>
+                  <Link href="/docs" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    Documentation
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/api" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    API Reference
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://github.com/niyazgim/unideka-ui-template" target="_blank" rel="noopener noreferrer" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    GitHub
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-heading-3 text-(--on-bg-medium) mb-2">Legal</h3>
+              <ul className="flex flex-col gap-1.5">
+                <li>
+                  <Link href="/privacy" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/terms" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    Terms of Service
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/cookies" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    Cookie Policy
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-heading-3 text-(--on-bg-medium) mb-2">Connect</h3>
+              <ul className="flex flex-col gap-1.5">
+                <li>
+                  <Link href="/contact" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    Contact
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/newsletter" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    Newsletter
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/support" className="text-body-3 text-(--on-bg-low) hover:text-(--on-bg-high) transition-colors">
+                    Support
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div> */}
+
+          {/* Bottom: copyright */}
+          <div className="pt-4 text-center text-body-5 text-(--on-bg-low)">
+            © 2026 Niyaz Gimadiev with ❤️
+          </div>
+        </div>
+      </Container>
+    </footer>
+  );
 }

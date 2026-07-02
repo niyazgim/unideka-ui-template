@@ -108,7 +108,7 @@ const colorGroups = [
 
 export function TypographyColorShowcase() {
   return (
-    <section className="py-16 md:py-24 border-t border-(--outline)">
+    <section className="py-8 md:py-16">
       <Container>
         <h2 className="text-display-3 md:text-display-2 text-(--on-bg-high) mb-8">
           Typography &amp; Colors
